@@ -1,0 +1,57 @@
+<div class="card ">
+    <div class="card-header text-center">
+       <span *ngIf="data.name">Edit</span>
+       <span *ngIf="!data.name">Add</span>
+    </div>
+    <form autocomplete="off" [formGroup]="formData" (ngSubmit)="setData(formData.valid)">
+        <div class="card-body">
+              <div class="mb-2">
+                <label>Full Name:</label>
+                <input type="text" name="name" placeholder="Full Name" formControlName="name" class="form-control">
+                <p class="text text-danger" *ngIf="!formData.get('name').valid && formData.get('name').touched">
+                    Full Name is required !
+                </p>
+            </div>
+            <div class="mb-2"> <label>Age:</label>
+                <input type="text" name="age" placeholder="Age" formControlName="age" class="form-control">
+                <p class="text text-danger" *ngIf="!formData.get('age').valid && formData.get('age').touched">
+                    Valid Age is required !
+                </p>
+            </div>
+            <div class="mb-2">
+                <label>Gender:</label>
+                <div class="border rounded">
+                    <input type="radio" class="m-3" name="gender" value="male" formControlName="gender">
+                    <label for="male">Male</label>
+                    <input type="radio" class="m-3" name="gender" value="female" formControlName="gender">
+                    <label for="female">Female</label>
+                    <p class="text text-danger" *ngIf="!formData.get('gender').valid">
+                        Gender is required !
+                    </p>
+                </div>
+            </div>
+            <div class="mb-2">
+                <label>Contact Number:</label>
+                    <input type="text" name="number" placeholder="Contact Number" class="form-control"
+                        formControlName="number">
+                        <p class="text text-danger" *ngIf="!formData.get('number').valid && formData.get('number').touched">
+                            Contact Number is required !
+                        </p>
+            </div>
+            <div class="mb-2">
+                <label>Address:</label>   
+                <textarea name="address"  cols="15" rows="5"  placeholder="Address" class="form-control" formControlName="address"></textarea>         
+                    <p class="text text-danger" *ngIf="!formData.get('address').valid && formData.get('address').touched">
+                        Address is required !
+                    </p>                
+            </div>
+        </div>
+        <div class="border rounded text text-danger p-3" align="center" *ngIf="!formData.valid && invalidForm">
+            All Valid Field required!
+        </div>
+        <div class="card-footer text-muted">
+            <button type="submit" class="btn btn-block btn-success mb-2">Submit</button>
+            <button class="btn btn-block btn-danger" type="button" (click)="close()">Cancel</button>
+        </div>
+    </form>
+</div>

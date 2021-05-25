@@ -1,0 +1,50 @@
+[
+    {
+        
+        "name":"ashish",
+        "gender":"male",
+        "age":12,
+        "number":9878998765,
+        "address":"indore"
+    },
+    {
+        
+        "name":"rahul",
+        "gender":"male",
+        "age":25,
+        "number":9877890765,
+        "address":"bhopal"
+    },
+    {
+        
+        "name":"rashmi",
+        "gender":"female",
+        "age":54,
+        "number":9876778900,
+        "address":"jaipur"
+    },
+    {
+        
+        "name":"soman",
+        "gender":"female",
+        "age":33,
+        "number":8767998900,
+        "address":"mumbai"
+    },
+    {
+        
+        "name":"sandeep",
+        "gender":"male",
+        "age":23,
+        "number":7088890999,
+        "address":"indore"
+    },
+    {
+        
+        "name":"mayank",
+        "gender":"male",
+        "age":56,
+        "number":7786777866,
+        "address":"indore"
+    }
+]
