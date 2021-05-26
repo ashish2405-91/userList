@@ -11,7 +11,8 @@ import { UserService } from '../user.service';
 })
 export class ListComponent implements OnInit {
   list = [];
-  find :any;
+  data = [];
+  find: any;
   constructor(
     private dailog: MatDialog,
     private toaster: ToastrService,
@@ -24,23 +25,26 @@ export class ListComponent implements OnInit {
   getList() {
     this.userService.getList().subscribe(res => {
       this.list = res;
+      this.data = res;
     })
   }
-  sorting(event){
-    console.log(event);
-    
-     if (event === 'ase') {
-    
-          this.list = this.list.sort((a, b) =>
-            (a['number'] || '').toString().localeCompare((b['number'] || '').toString())
-          )
-        }
-        if (event === 'desc') {
-        
-          this.list = this.list.sort((a, b) =>
-            (b['number'] || '').toString().localeCompare((a['number'] || '').toString())
-          )
-        } 
+  search(event) {
+    const data = this.data ? this.data.filter(item => item.name.search(new RegExp(event, 'i')) > -1) : [];
+    if (data.length > 0) {
+      this.list = data;
+    }
+  }
+  sorting(event) {
+    if (event === 'ase') {
+      this.list = this.list.sort((a, b) =>
+        (a['number'] || '').toString().localeCompare((b['number'] || '').toString())
+      )
+    }
+    if (event === 'desc') {
+      this.list = this.list.sort((a, b) =>
+        (b['number'] || '').toString().localeCompare((a['number'] || '').toString())
+      )
+    }
   }
 
   add(index, type) {
@@ -54,7 +58,6 @@ export class ListComponent implements OnInit {
         age: this.list[index].age
       }
     }
-
     const dailog = this.dailog.open(FormComponent, {
       data: value,
       width: '588px',

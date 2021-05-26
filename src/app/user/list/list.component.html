@@ -3,13 +3,12 @@
     <hr>
   <div class="d-flex justify-content-between">
       <div>
-          <input type="text" name="find" placeholder="Search by name"  [(ngModel)]="find" class="form-control" id="">
+          <input type="text" name="search" placeholder="Search by name" #find (keyup)="search(find.value)"  class="form-control" id="">
       </div>
-      <!-- <div >
+      <div>
         <i class="fa fa-arrow-up mr-3" (click)="sorting('ase')" aria-hidden="true"></i>
         <i class="fa fa-arrow-down" (click)="sorting('desc')" aria-hidden="true"></i>
-
-      </div> -->
+      </div>
    <div>
     <button  type="button" class="btn btn-primary mb-2" (click)="add('','add')"><i class="fa fa-plus mr-1" aria-hidden="true"></i> Add</button>
    </div>
@@ -27,7 +26,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let data of list |search : find; let i = index;">
+            <tr *ngFor="let data of list ; let i = index;">
                 <td>{{i+1}}</td>
                 <td>{{data.name}}</td>
                 <td>{{data.age}}</td>

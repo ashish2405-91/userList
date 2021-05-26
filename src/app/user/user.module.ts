@@ -8,7 +8,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { HttpClientModule } from '@angular/common/http';
 import { UserService } from "./user.service";
-import { PipeModule } from '../pipemodule/pipe.module';
 @NgModule({
   declarations: [ListComponent, FormComponent],
   imports: [
@@ -18,7 +17,6 @@ import { PipeModule } from '../pipemodule/pipe.module';
     ReactiveFormsModule,
     ToastrModule,
     HttpClientModule,
-    PipeModule,
     FormsModule
   ],
   providers:[UserService]
