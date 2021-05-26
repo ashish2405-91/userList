@@ -12,6 +12,7 @@ import { UserService } from '../user.service';
 export class ListComponent implements OnInit {
   list = [];
   data = [];
+  total = 0;
   find: any;
   constructor(
     private dailog: MatDialog,
@@ -26,23 +27,28 @@ export class ListComponent implements OnInit {
     this.userService.getList().subscribe(res => {
       this.list = res;
       this.data = res;
+      this.total = this.list.length;
     })
   }
   search(event) {
     const data = this.data ? this.data.filter(item => item.name.search(new RegExp(event, 'i')) > -1) : [];
     if (data.length > 0) {
       this.list = data;
+      this.total = this.list.length;
+    }else{
+      this.list = [];
+      this.total = 0;
     }
   }
   sorting(event) {
     if (event === 'ase') {
       this.list = this.list.sort((a, b) =>
-        (a['number'] || '').toString().localeCompare((b['number'] || '').toString())
+        (a['name'] || '').toString().localeCompare((b['name'] || '').toString())
       )
     }
     if (event === 'desc') {
       this.list = this.list.sort((a, b) =>
-        (b['number'] || '').toString().localeCompare((a['number'] || '').toString())
+        (b['name'] || '').toString().localeCompare((a['name'] || '').toString())
       )
     }
   }
@@ -66,7 +72,7 @@ export class ListComponent implements OnInit {
     })
     dailog.afterClosed().subscribe(res => {
       if (res) {
-        if (type === 'add') { this.list.push(res); }
+        if (type === 'add') { this.list.push(res); this.total += 1; }
         if (type === 'edit') {
           this.list[index].name = res.name;
           this.list[index].address = res.address;
@@ -80,8 +86,9 @@ export class ListComponent implements OnInit {
   delete(index) {
     var con = confirm('Are you sure want to delete ' + this.list[index].name + ' ?');
     if (con) {
-      this.list.splice(index, 1)
-      this.toaster.success('Item Delete')
+      this.list.splice(index, 1);
+      this.total -= 1; 
+      this.toaster.success('Item Delete');
     }
   }
 }

@@ -1,5 +1,8 @@
 <div class="container">
-    <h4 align="center" class="mb-3 p-3">User List</h4>
+    <h4 align="center" class="mb-3 p-3">User List 
+        <p>({{total}})</p>
+    </h4>
+    
     <hr>
   <div class="d-flex justify-content-between">
       <div>
@@ -40,6 +43,13 @@
                     </button>
                 </td>
             </tr>
+        </tbody>
+        <tbody *ngIf="total === 0">
+           <tr >
+          <td align="center" colspan="7">
+            <h1  class="p-3"> No User Found!</h1>
+          </td>
+           </tr>
         </tbody>
     </table>
 </div>
